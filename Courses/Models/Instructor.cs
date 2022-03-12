@@ -11,6 +11,6 @@ namespace Courses.Models
         public string Name { get; set; }
         public string Phone { get; set; }
 
-        public Course Course { get; set; }
+        public ICollection<Course> Course { get; set; }
     }
 }
