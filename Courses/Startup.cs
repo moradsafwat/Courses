@@ -1,4 +1,5 @@
 using Courses.Models;
+using Courses.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +32,10 @@ namespace Course
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SqlConn"));
             });
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IMaterialRepository, MaterialRepository>();
+            services.AddScoped<IInstructorRepository, InstructorRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
