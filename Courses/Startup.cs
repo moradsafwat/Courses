@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Course
+namespace Courses
 {
     public class Startup
     {
@@ -28,14 +28,16 @@ namespace Course
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<CourseDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("SqlConn"));
-            });
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IMaterialRepository, MaterialRepository>();
             services.AddScoped<IInstructorRepository, InstructorRepository>();
+
+            services.AddDbContext<CourseDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("SqlConn"));
+            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

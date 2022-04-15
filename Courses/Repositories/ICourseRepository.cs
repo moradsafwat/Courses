@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Courses.Repositories
 {
-     public interface ICourseRepository : IRepository<Course>
+    public interface ICourseRepository : IRepository<Course>
     {
-     
+        IEnumerable<Course> GetCourseWithInstructor();
     }
 }
