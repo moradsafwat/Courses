@@ -1,6 +1,4 @@
-﻿//using Course.Models;
-using Courses.Models;
-using Courses.Repositories;
+﻿using Course.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
