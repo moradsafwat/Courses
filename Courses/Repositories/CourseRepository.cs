@@ -1,4 +1,6 @@
 ﻿using Courses.Models;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,18 @@ namespace Courses.Repositories
     {
         public CourseRepository(CourseDbContext _db):base(_db)
         {
+        }
+
+        public IEnumerable<Course> GetAllByInclude()
+        {
+            var course = db.Courses.Include("Instructor").ToList();
+
+            return (IEnumerable< Course>) course;
+        }
+
+        public int GetCountCourse()
+        {
+            return db.Courses.Count();
         }
 
         public IEnumerable<Course> GetCourseWithInstructor()
@@ -25,7 +39,7 @@ namespace Courses.Repositories
                     CourseTitle = course.Title,
                     CourseDescription = course.Description,
                     InstructorName = instructor.Name
-                });
+                }).ToList();
             return (IEnumerable<Course>)course;
         }
     }

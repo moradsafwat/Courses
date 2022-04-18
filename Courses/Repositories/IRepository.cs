@@ -10,12 +10,13 @@ namespace Courses.Repositories
         IList<TEntity> List();
         TEntity Get(int id);
         TEntity Find(int id);
-        void AddRange(IEnumerable<TEntity> entities);
+         void AddRange(IEnumerable<TEntity> entities);
         void Add(TEntity entity);
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
         void Update(int id, TEntity entity);
         void SaveAsync();
+
 
 
 

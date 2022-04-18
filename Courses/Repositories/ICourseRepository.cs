@@ -9,5 +9,8 @@ namespace Courses.Repositories
     public interface ICourseRepository : IRepository<Course>
     {
         IEnumerable<Course> GetCourseWithInstructor();
+        IEnumerable<Course> GetAllByInclude();
+        public int GetCountCourse();
+
     }
 }

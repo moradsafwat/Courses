@@ -10,7 +10,11 @@ namespace Courses.Repositories
     {
         public StudentRepository(CourseDbContext _db) : base (_db)
         {
+        }
 
+        int IStudentRepository.GetCountStudent()
+        {
+            return db.Students.Count();
         }
     }
 }

@@ -8,5 +8,7 @@ namespace Courses.Repositories
 {
     public interface IInstructorRepository : IRepository<Instructor>
     {
+        public int GetCountInstructor();
     }
+    
 }

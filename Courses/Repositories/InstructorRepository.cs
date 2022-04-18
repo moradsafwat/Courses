@@ -10,7 +10,11 @@ namespace Courses.Repositories
     {
         public InstructorRepository(CourseDbContext _db):base(_db)
         {
-
         }
+        public int GetCountInstructor()
+        {
+            return db.Instructors.Count();
+        }
+
     }
 }

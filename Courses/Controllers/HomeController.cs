@@ -1,4 +1,5 @@
-﻿using Course.Models;
+﻿using Courses.Models;
+using Courses.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -14,19 +15,26 @@ namespace Courses.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ICourseRepository _course;
         private readonly IInstructorRepository _instructor;
+        private readonly IStudentRepository _student;
 
         public HomeController(
             ILogger<HomeController> logger,
             ICourseRepository course,
-            IInstructorRepository instructor)
+            IInstructorRepository instructor,
+            IStudentRepository student
+            )
         {
             _logger = logger;
             _course = course;
             _instructor = instructor;
+            _student = student;
         }
 
         public IActionResult Index()
         {
+            ViewBag.CountInstructor = _instructor.GetCountInstructor();
+            ViewBag.CountStudent = _student.GetCountStudent();
+            ViewBag.CountCourse = _course.GetCountCourse();
             return View();
         }
 
@@ -45,7 +53,8 @@ namespace Courses.Controllers
             //        InstructorName = instructor.Name
             //    });
             //var course = _course.GetCourseWithInstructor().ToList();
-            var course = _course.List();
+            //var course = _course.List();
+            var course = _course.GetAllByInclude();
 
             return View(course);
         }
