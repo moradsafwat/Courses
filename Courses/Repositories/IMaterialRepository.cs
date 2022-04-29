@@ -8,5 +8,7 @@ namespace Courses.Repositories
 {
     public interface IMaterialRepository : IRepository<Material>
     {
+        IEnumerable<Material> GetCourseWithMaterial(int id);
+
     }
 }

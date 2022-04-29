@@ -16,9 +16,9 @@ namespace Courses.Repositories
 
         public IEnumerable<Course> GetAllByInclude()
         {
-            var course = db.Courses.Include("Instructor").ToList();
+            return db.Courses.Include("Instructor").ToList();
 
-            return (IEnumerable< Course>) course;
+//             (IEnumerable< Course>) course;
         }
 
         public int GetCountCourse()
@@ -42,5 +42,7 @@ namespace Courses.Repositories
                 }).ToList();
             return (IEnumerable<Course>)course;
         }
+
+        
     }
 }

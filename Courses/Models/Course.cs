@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Courses.Models
 {
+    
     public class Course
     {
         public int Id { get; set; }
@@ -12,7 +14,8 @@ namespace Courses.Models
         public string Description { get; set; }
         public double Price { get; set; }
         public string Category { get; set; }
-        public IList<Material> Material { get; set; }
+        //public IList<Material> Material { get; set; }
+        public Material Material { get; set; }
         public int InstructorId { get; set; }
         public Instructor Instructor { get; set; }
         public ICollection<Student> Student { get; set; }

@@ -1,0 +1,48 @@
+﻿@using Courses.Models;
+@model IEnumerable<Material>;
+@{
+    ViewData["Title"] = "Details";
+}
+<Div class="text-center">
+    <h1>Details</h1>
+    <h1>@ViewBag.Err</h1>
+</Div>
+<div class="container">
+    @foreach (var m in Model)
+    {
+        <div class="breadcrumbs" data-aos="fade-in">
+            <div class="container">
+                <h2>@Html.DisplayFor(Item => m.NameCourse)</h2>
+                <p>@Html.DisplayFor(Item => m.Conten) </p>
+            </div>
+        </div>
+    <!-- End Breadcrumbs -->
+        <!-- ======= About Section ======= -->
+        <section id="about" class="about">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row">
+                    <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+                        <img src="~/assets/img/about.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                        <h3>@Html.DisplayFor(Item => m.NameCourse)</h3>
+                        <p class="fst-italic">
+                            @Html.DisplayFor(Item => m.Conten)
+                        </p>
+                        <ul>
+                            <li><i class="bi bi-check-circle"></i>@Html.DisplayFor(Item => m.FilePath)</li>
+                            <li><i class="bi bi-check-circle"></i>@Html.DisplayFor(Item => m.VideoLink)</li>
+                            <li><i class="bi bi-check-circle"></i>@Html.DisplayFor(Item => m.Type)</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- End About Section -->
+        <div>
+            <a asp-controller="Home" asp-action="CreateStudent" class="get-started-btn">Join To Course</a>
+        </div>
+    }
+</div>

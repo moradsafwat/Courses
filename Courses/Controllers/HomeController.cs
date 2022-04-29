@@ -16,18 +16,22 @@ namespace Courses.Controllers
         private readonly ICourseRepository _course;
         private readonly IInstructorRepository _instructor;
         private readonly IStudentRepository _student;
+        private readonly IMaterialRepository _material;
+
 
         public HomeController(
             ILogger<HomeController> logger,
             ICourseRepository course,
             IInstructorRepository instructor,
-            IStudentRepository student
+            IStudentRepository student,
+            IMaterialRepository material
             )
         {
             _logger = logger;
             _course = course;
             _instructor = instructor;
             _student = student;
+            _material = material;
         }
 
         public IActionResult Index()
@@ -40,25 +44,17 @@ namespace Courses.Controllers
 
         public IActionResult Courses()
         {
-            //var course = db.Courses
-            //    .Join(
-            //    db.Instructors,
-            //    course => course.InstructorId,
-            //    instructor => instructor.Id,
-            //    (course, instructor) => new
-            //    {
-            //        CourseId = course.Id,
-            //        CourseTitle = course.Title,
-            //        CourseDescription = course.Description,
-            //        InstructorName = instructor.Name
-            //    });
-            //var course = _course.GetCourseWithInstructor().ToList();
-            //var course = _course.List();
-            var course = _course.GetAllByInclude();
+            var course = _course.GetAllByInclude().OrderBy(c => c.Title);
 
             return View(course);
         }
 
+        public IActionResult Details(int id)
+        {
+            var details = _material.GetCourseWithMaterial(id);
+            return View(details);
+
+        }
         public IActionResult About()
         {
             return View();
@@ -68,7 +64,18 @@ namespace Courses.Controllers
             var instructor = _instructor.List();
             return View(instructor);
         }
-
+           
+        public IActionResult CreateStudent()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateStudent(Student student)
+        {
+            _student.Add(student);
+            return RedirectToAction("Courses");
+        }
         public IActionResult Pricing()
         {
             return View();

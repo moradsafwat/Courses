@@ -11,6 +11,5 @@ namespace Courses.Repositories
         IEnumerable<Course> GetCourseWithInstructor();
         IEnumerable<Course> GetAllByInclude();
         public int GetCountCourse();
-
     }
 }

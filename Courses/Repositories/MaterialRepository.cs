@@ -10,7 +10,17 @@ namespace Courses.Repositories
     {
         public MaterialRepository(CourseDbContext _db): base(_db)
         {
+        }
+        public IEnumerable<Material> GetCourseWithMaterial(int id)
+        {
 
+            return db.Materials.Where(c => c.CourseId == id).ToList();
+            
+            
+            //(IEnumerable<Material>)data;
+
+            //var CourseMaterial = db.Courses.Include("Material").SingleOrDefault(c => c.Id == id);
+            //return (IEnumerable<Course>) CourseMaterial;
         }
     }
 }
